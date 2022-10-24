@@ -1,0 +1,5 @@
+Mark Zuckerberg,100
+Bil Gates,200
+Dorina Preda,340
+Antanta Marin,980
+Lorenzo Bruno,1002
