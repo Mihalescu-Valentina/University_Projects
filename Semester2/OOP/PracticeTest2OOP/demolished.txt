@@ -1,0 +1,4 @@
+Home 
+	 adress: Principal Street nr 2222
+	 construction year: 1910
+	 is historical: 0
