@@ -1,0 +1,5 @@
+100,12,user2,answer1,23
+101,33,user2,answer2,24
+102,20,user3,answer3,25
+104,33,user1,answer4,26
+42,33,user4,some random answer,0
