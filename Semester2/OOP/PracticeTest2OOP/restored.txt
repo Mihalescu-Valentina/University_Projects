@@ -1,0 +1,9 @@
+Block 
+	 adress: Principal Street nr 1000
+	 construction year: 1900
+	 total apartments number: 100
+	 occupied apartments number: 90
+Home 
+	 adress: Principal Street nr 2222
+	 construction year: 1910
+	 is historical: 1
