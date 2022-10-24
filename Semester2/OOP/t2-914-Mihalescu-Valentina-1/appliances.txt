@@ -1,0 +1,5 @@
+DishWasher 
+	 id: 234
+	 weight: 24
+	 washing cyde length: 56
+	 consumed electricity for one Hour: 100
