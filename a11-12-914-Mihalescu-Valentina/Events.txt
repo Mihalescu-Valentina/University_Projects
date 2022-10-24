@@ -1,6 +1,0 @@
-Title,description,01,01,2022,20:30,100,https://www.linkedin.com/home/?originalSubdomain=ro
-Disneyland tour,nostalgia,12,04,2023,20:45, 2500, https://disneyland.disney.go.com/
-BMTH tour,European tour,01,01,2023,21:00,9000, https://www.bmthofficial.com/live/
-LM5 tour,concert,12,02,2022,20:30,1000,https://www.little-mix.com/events/
-Treasure hunt, students,09,04,2022,20:45,200,https://www.thespruce.com/indoor-treasure-hunt-for-children-1695332
-Save the children,volunteering activity,01,02,2022,20:35,900,https://www.savethechildren.org/
