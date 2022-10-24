@@ -32,9 +32,6 @@ public:
 
 	void operator+(T& e);
 
-	//void operator+(Event elem);
-
-	//int& operator==(const DynamicVector& v);
 
 	// Adds an element to the current DynamicVector.
 	int add(T e);
