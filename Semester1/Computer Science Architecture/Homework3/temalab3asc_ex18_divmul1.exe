@@ -1,0 +1,84 @@
+bits 32 ; assembling for the 32 bits architecture
+
+; declare the EntryPoint (a label defining the very first instruction of the program)
+global start        
+
+; declare external functions needed by our program
+extern exit               ; tell nasm that exit exists even if we won't be defining it
+import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+                          ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+
+; our data is declared here (the variables needed by our program)
+segment data use32 class=data
+    a db 3
+    b db 3
+    c dw 2
+    e dd 4
+    x dq 6
+    
+    
+
+; our code starts here
+segment code use32 class=code
+    start:
+        ; (a+b*c+2/c)/(2+a)+e+x    (3+3*2+1)/5+4+6=C
+          mov bl,[b]
+          mov bh,0
+          mov ax,[c]
+          mul bx    ;b*c is stored in dx:ax register
+          mov bx,0
+          mov bl,[a]
+          add ax,bx 
+          adc dx,0  ;a+b*c is stored in dx:ax register
+        mov cx,ax ;i need the ax register to perform the next multiplications/divisions so the result of a+bc(ax)is moved to cx
+        mov bx,dx  ;i need dx to peform 2/[c] so the result stored in dx is moved to bx bx:cx<- a+b*c
+          push bx
+          push cx
+          
+          mov ax,2
+          mov cx,[c]
+          mov dx,0
+          div cx  ;2/c is stored in ax after (dx:ax)/cx
+          pop cx
+          pop bx
+         
+          add cx,ax ;bx:cx stores the result of a+b*c+2/c
+          adc bx,0
+          
+          
+          mov dx,bx
+          mov ax,cx
+          
+         
+          mov bx,0
+          mov bl,[a]
+          add bl,2
+          div bx ;dx:ax/bx the result of (a+b*c+2/c)/(2+a) is stored in ax register
+          
+          mov ecx, dword[x]
+          mov edx, dword[x+4] ;x is stored in edx:ecx because is a quad
+          add ecx,[e] 
+          adc edx,0  ;x+e is stored in edx:ecx
+          mov ebx,0
+          mov bx,ax
+          mov eax,0 ;the result of (a+b*c+2/c)/(2+a) is stored in eax:ebx register because i need to add it to a quad
+          add ebx,ecx
+          adc eax,edx ;the result of (a+b*c+2/c)/(2+a)+e+x  is stored in eax:ebx register
+          
+          
+          
+          
+          
+          
+          
+         
+          
+          
+          
+          
+         
+          
+    
+        ; exit(0)
+        push    dword 0      ; push the parameter for exit onto the stack
+        call    [exit]       ; call exit to terminate the program
