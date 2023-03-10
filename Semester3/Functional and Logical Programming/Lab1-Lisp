@@ -1,0 +1,123 @@
+;ex 14b
+(defun prodElem(l)
+(cond
+    ((null l)          1)
+    ((numberp (car l)) (* (car l) (prodElem (cdr l))))
+    ((listp (car l))   (* (prodElem (car l)) (prodElem (cdr l))))
+    (t (prodElem        (cdr l)))
+)
+)
+
+(defun testProdElem()
+   (assert 
+     (and 
+     (equal 20 (prodElem'(1 2 5 2)))
+     (equal 2 (prodElem'(2 1)))
+     (equal 54 (prodElem'(1 9 6 1)))
+)
+)
+)
+
+;ex 14a
+(defun nrOcc(e s)
+(cond
+    ((null s)              0)
+    ((= (car s) e)    (+ 1 (nrOcc e (cdr s))))
+    (t                    (nrOcc e (cdr s)))
+)
+)
+
+
+(defun unionSets(s1 s2)
+(cond
+    ((null s1) s2)
+    ((= 0 (nrOcc (car s1) s2)) (cons (car s1) (unionSets (cdr s1) s2)))
+    (t  (unionSets (cdr s1) s2))   
+    
+      
+
+))
+
+(defun testUnionSets()
+(assert
+ (and 
+ (equal '(1 3 4 8) (unionSets nil '(1 3 4 8)))
+ (equal '(7 4 3 9 5)(unionSets'(3 5 7)'(4 3 9 5)))
+)))
+
+;ex14c this function inserts the element e at the right position in the list 
+(defun insertE (l e)
+    (cond
+        ((null l) (list e))
+        ((or (equal (car l) l) (< e (car l))) (cons e l))
+        (T (cons (car l) (insertE (cdr l) e)))
+    )
+)
+
+;this function uses the insert function to sort the list in an ascending manner
+(defun sortList (l)
+    (cond
+        ((null l) nil)
+        (T (insertE (sortList (cdr l)) (car l)))
+    )
+)
+
+(defun testSortList()
+(assert
+(and
+(equal '(2 2 3 7 9)(sortList'(9 2 3 2 7 )))
+(equal '(1 3 3 7 10) (sortList'(7 3 1 3 10)))
+)
+))
+
+(defun insert2 (l e)
+    (cond
+        ((null l) (list e))
+        ((equal (car l) e) l)
+        ((< e (car l)) (cons e l))
+        (T (cons (car l) (insert2 (cdr l) e)))
+    )
+)
+
+(defun sortList2 (l)
+    (cond
+        ((null l) nil)
+        (T (insert2 (sortList2 (cdr l)) (car l)))
+    )
+)
+
+(defun testSortList2()
+  (assert
+   (and
+     (equal '(0 1 2 8)(sortList2'(8 2 0 1 0 8)))
+     (equal '(0 1 2 7 9) (sortList2'(7 0 2 7 9 1)))
+)
+)
+)
+
+;ex14d
+(defun minList(l crrMin crrPos listPoz)
+  (cond
+      ((null l) listPoz)
+      ((not (numberp(car l)))(minList(cdr l) crrMin (+ crrPoz 1) listPoz))
+((= crrMin (car l)) (minList(cdr l) crrMin (+ crrPos 1 ) (append listPoz (list crrPos))))
+      ((< (car l) crrMin) (minList (cdr l) (car l) (+ crrPos 1)(list crrPos)))
+      (t (minList(cdr l) crrMin (+ crrPos 1) listPoz))
+
+)
+)
+
+(defun minListMain(l)
+  (minList l (car l) 1 nil)
+)
+
+(defun testMinList()
+ (assert
+   (and 
+     (equal '(1 2) (minListMain'(3 3 9 12 5 40)))
+     (equal '(2 4 6)(minListMain'(1 0 5 0 6 0)))
+)
+)
+)
+
+
