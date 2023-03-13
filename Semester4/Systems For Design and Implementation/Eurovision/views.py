@@ -1,30 +1,3 @@
-# from rest_framework import generics
-# from .models import Country,HostCity
-# from .serializers import CountrySerializer,HostCitySerializer
-#
-# class CountryList(generics.ListCreateAPIView):
-#     serializer_class = CountrySerializer
-#
-#     def get_queryset(self):
-#         queryset = Country.objects.all()
-#         name = self.request.query_params.get('name')
-#         if name is not None:
-#             queryset = queryset.filter(country_name=name)
-#         return queryset
-#
-# class CountryDetail(generics.RetrieveUpdateDestroyAPIView):
-#     serializer_class = CountrySerializer
-#     queryset = Country.objects.all()
-#
-# class HostCityList(generics.ListCreateAPIView):
-#     serializer_class = HostCitySerializer
-#     queryset = HostCity.objects.all()
-#
-# class HostCityDetail(generics.RetrieveUpdateDestroyAPIView):
-#     serializer_class = HostCitySerializer
-#     queryset = HostCity.objects.all()
-
-
 from django.http import JsonResponse
 from .models import Country
 from .serializers import CountrySerializer
